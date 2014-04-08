@@ -1,7 +1,7 @@
 {
   "name": "simple-logs",
   "description": "A simple method for console logging with colors and in an organized manner.",
-  "version": "0.1.1",
+  "version": "0.1.11",
   "author": "herenow",
   "repository": {
     "type": "git",
