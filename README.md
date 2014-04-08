@@ -28,7 +28,7 @@ Log.setDebug(true); //Defaults to true
 
 SomeModule.js
 ```javascript
-var Log = require('simple-log');
+var Log = require('simple-logs');
 
 var log = new Log('SomeModule');
 
