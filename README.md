@@ -3,6 +3,21 @@ simple-logs
 
 Simple logs is a simple method for logging, its straight foward. See the examples below.
 
+There is only 3 methods, log.info, log.error and log.debug.
+
+For each module simple-logs will be in, you need to instanciate a new Log, and pass it a text to prepend, so in this case:
+
+```
+var Log = require('simple-logs');
+
+var log = new Log('module_name')";
+
+//now we have our methods:
+//log.info()
+//log.error()
+//log.debug()
+```
+
 
 Installation
 ----------
@@ -13,7 +28,7 @@ npm install simple-logs
 
 Usage example
 ----------
-Core.js
+[Core.js]
 ```javascript
 var Log = require('simple-logs');
 
@@ -26,7 +41,7 @@ Log.on('error', function ErrorEvent(log) {
 Log.setDebug(true); //Defaults to true
 ```
 
-SomeModule.js
+[SomeModule.js]
 ```javascript
 var Log = require('simple-logs');
 
