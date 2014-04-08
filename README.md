@@ -32,15 +32,18 @@ var Log = require('simple-log');
 
 var log = new Log('SomeModule');
 
-log.info('some module is %s', 'running');
-//Prints: '[SomeModule]: some module is running'
+log.info('this is %s', 'running');
+//Prints: '[SomeModule]: this is running'
+//Color: [SomeModule] would print Green
 
 log.error('failed to %s', 'write to buffer');
 //Prints: '[SomeModule]: failed to write to buffer'
+//Color: [SomeModule] would print Red
 //This will also emit the error event, since we added the listener at Core.js
 
 log.debug('his name was %s', 'john');
 //Prints: '[SomeModule]: his name was john'
+//Color: [SomeModule] would print Blue
 ```
 
 
