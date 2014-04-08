@@ -10,7 +10,7 @@ For each module simple-logs will be in, you need to instanciate a new Log, and p
 ```
 var Log = require('simple-logs');
 
-var log = new Log('module_name')";
+var log = new Log('module_name');
 
 //now we have our methods:
 //log.info()
