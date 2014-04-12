@@ -12,7 +12,6 @@
  * Dependencies
  */
 var util = require('util');
-var colors = require('colors');
 var events = require('events');
 var eventEmitter = new events.EventEmitter();
 
@@ -56,9 +55,9 @@ Log.setDebug = function setDebugger(_enum) {
 Log.prototype.info = function Info() {
 	var log = mes.apply(null, arguments);
 	
-	console.log('[%s]'.green + ': %s', this.prepend, log);
+	console.log('\x1b[1;32m[%s]:\x1b[0m %s', this.prepend, log);
 	
-	eventEmitter.emit('info', log);
+	eventEmitter.emit('logs.info', log);
 	
 	return this;
 }
@@ -70,9 +69,9 @@ Log.prototype.info = function Info() {
 Log.prototype.error = function Error() {
 	var log = mes.apply(null, arguments);
 	
-	console.error('[%s]'.red + ': %s', this.prepend, log);
+	console.error('\x1b[1;31m[%s]:\x1b[0m %s', this.prepend, log);
 	
-	eventEmitter.emit('error', log);
+	eventEmitter.emit('logs.error', log); //Appended logs. to event names, because of naming conventions i guess
 	
 	return this;
 }
@@ -88,9 +87,9 @@ Log.prototype.debug = function Debug() {
 	
 	var log = mes.apply(null, arguments);
 	
-	console.log('[%s]'.blue + ': %s', this.prepend, log);
+	console.log('\x1b[1;34m[%s]:\x1b[0m %s', this.prepend, log);
 	
-	eventEmitter.emit('debug', log);
+	eventEmitter.emit('logs.debug', log);
 	
 	return this;
 }
@@ -100,6 +99,7 @@ Log.prototype.debug = function Debug() {
  * Events
  */
 Log.on = Log.addListener = function() {
+    arguments[0] = 'logs.' + arguments[0];
 	eventEmitter.on.apply(eventEmitter, arguments);
 }
 
