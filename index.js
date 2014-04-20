@@ -35,7 +35,7 @@ var Log = function Constructor(prep) {
 	/*
 	 * String that will be prepended to all log information
 	 */
-	this.prepend = prep;
+	this.prepend = prep || null;
 	
 	return this;
 }
@@ -52,10 +52,10 @@ Log.setDebug = function setDebugger(_enum) {
 /**
  * Simple information
  */
-Log.prototype.info = function Info() {
+Log.info = Log.prototype.info = function Info() {
 	var log = mes.apply(null, arguments);
 	
-	console.log('\x1b[1;32m[%s]:\x1b[0m %s', this.prepend, log);
+	console.log('\x1b[1;32m[%s]:\x1b[0m %s', this.prepend || 'Info', log);
 	
 	eventEmitter.emit('logs.info', log);
 	
@@ -64,12 +64,27 @@ Log.prototype.info = function Info() {
 
 
 /**
- * Error information
+ * Warnings
  */
-Log.prototype.error = function Error() {
+Log.warn = Log.prototype.warn = function Warning() {
 	var log = mes.apply(null, arguments);
 	
-	console.error('\x1b[1;31m[%s]:\x1b[0m %s', this.prepend, log);
+	console.log('\x1b[1;33m[%s]:\x1b[0m %s', this.prepend || 'Warn', log);
+	
+	eventEmitter.emit('logs.warn', log);
+	
+	return this;
+}
+
+
+
+/**
+ * Error information
+ */
+Log.error = Log.prototype.error = function Error() {
+	var log = mes.apply(null, arguments);
+	
+	console.error('\x1b[1;31m[%s]:\x1b[0m %s', this.prepend || 'Error', log);
 	
 	eventEmitter.emit('logs.error', log); //Appended logs. to event names, because of naming conventions i guess
 	
@@ -80,14 +95,14 @@ Log.prototype.error = function Error() {
 /**
  * Debug information
  */
-Log.prototype.debug = function Debug() {
+Log.debug = Log.prototype.debug = function Debug() {
 	if(DEBUG === false) {
 		return this;
 	}
 	
 	var log = mes.apply(null, arguments);
 	
-	console.log('\x1b[1;34m[%s]:\x1b[0m %s', this.prepend, log);
+	console.log('\x1b[1;34m[%s]:\x1b[0m %s', this.prepend || 'Debug', log);
 	
 	eventEmitter.emit('logs.debug', log);
 	
@@ -99,7 +114,7 @@ Log.prototype.debug = function Debug() {
  * Events
  */
 Log.on = Log.addListener = function() {
-    arguments[0] = 'logs.' + arguments[0];
+	arguments[0] = 'logs.' + arguments[0];
 	eventEmitter.on.apply(eventEmitter, arguments);
 }
 
