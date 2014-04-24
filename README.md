@@ -59,7 +59,7 @@ Log.warn('failed to log action');
 Log.error('failed to %s', 'write to buffer');
 Log.debug('his name was %s', 'john');
 ```
-![ScreenShot](https://raw.github.com/herenow/simple-logs/examples/print.png)
+![ScreenShot](https://raw.githubusercontent.com/herenow/simple-logs/master/examples/print.png)
 
 Authors
 ---------
