@@ -7,7 +7,7 @@ There are 4 methods, log.info, log.warn, log.error and log.debug.
 
 For each module simple-logs will be in, you can instanciate a new Log, and pass in a text to prepend to each log, so in this case:
 
-```
+```javascript
 var Log = require('simple-logs');
 
 var log = new Log('module_name');
@@ -30,6 +30,7 @@ npm install simple-logs
 Usage example
 ----------
 * Core.js
+
 ```javascript
 var Log = require('simple-logs');
 
@@ -43,6 +44,7 @@ Log.setDebug(true); //Defaults to true
 ```
 
 * SomeModule.js
+
 ```javascript
 var Log = require('simple-logs');
 
